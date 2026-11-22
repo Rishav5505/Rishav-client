@@ -7,6 +7,7 @@ import oasis from './assets/w_Oasis_ERP_Full.webp';
 import jal from './assets/w_JalConnect_Thumb.webp';
 import labour from './assets/w_LabourChowk_Thumb.webp';
 import fresh from './assets/w_FreshPlant_Thumb.webp';
+import nexus from './assets/w_nexus_thumb.webp';
 
 const base = import.meta.env.BASE_URL;
 
@@ -47,6 +48,20 @@ export const projects = [
       'A cybersecurity command centre with live threat maps, risk scoring and real-time data visualisation for security teams.',
     tags: ['React', 'Data Viz', 'UI/UX'],
     url: 'https://final-year-ten-delta.vercel.app/',
+  },
+  {
+    id: 'nexus',
+    overview: 'Nexus is a team workspace for planning, tracking and shipping work — projects, tasks and team flow brought into one home. Built as a full-stack coding assignment, with separate experiences for team members and admins.',
+    features: [{ t: 'Role-based access', d: 'Distinct sign-in and permissions for team members and admins.' }, { t: 'Projects & tasks', d: 'Plan work, assign tasks and track progress across the team.' }, { t: 'Polished onboarding', d: 'A modern sign-in flow with social login options and one-click demo access.' }],
+    filters: ['Full-Stack', 'Dashboards', 'UI/UX'],
+    title: 'Nexus',
+    kicker: 'Team task manager',
+    category: 'Productivity SaaS',
+    image: nexus,
+    description:
+      'A team workspace to plan, track and ship work — projects, tasks and role-based access for members and admins.',
+    tags: ['TypeScript', 'Full-Stack', 'Auth & Roles'],
+    url: 'https://nexus-ethara-assignment.vercel.app/',
   },
   {
     id: 'wavygo',

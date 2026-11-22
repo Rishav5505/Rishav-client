@@ -87,7 +87,7 @@ export default function Showcase() {
             </AnimatePresence>
 
             {/* Thumbnails */}
-            <div className="mt-10 grid grid-cols-5 gap-2 sm:grid-cols-9 lg:grid-cols-5">
+            <div className="mt-10 grid grid-cols-5 gap-2 lg:grid-cols-5">
               {projects.map((pr, i) => (
                 <button
                   key={pr.id}
