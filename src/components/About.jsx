@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { profile, stack, stats } from '../data';
 import { CountUp, Icon, Reveal, SectionHead, Spot } from './ui';
+import { T, listHi, useLang } from '../i18n';
 
 function Clock() {
   const fmt = () =>
@@ -16,18 +17,15 @@ function Clock() {
 const cell = 'p-5 sm:p-7 md:p-8 h-full';
 
 export default function About() {
+  const { t, lang } = useLang();
   return (
     <section id="about" className="py-24 md:py-32">
       <div className="container-site">
         <SectionHead
           index="01"
           label="About"
-          title={
-            <>
-              A little <span className="text-gradient font-serif font-normal italic">about me</span>
-            </>
-          }
-          aside="Engineer by trade, perfectionist by habit. I care about the details that make software feel effortless."
+          title={<T k="about.title" />}
+          aside={t('about.aside')}
         />
 
         <div className="grid auto-rows-[minmax(150px,auto)] grid-cols-2 gap-3 sm:gap-4 lg:grid-cols-4">
@@ -39,15 +37,14 @@ export default function About() {
                 style={{ background: 'radial-gradient(circle, var(--g2), transparent 70%)' }}
               />
               <div>
-                <p className="eyebrow">Hello there</p>
+                <p className="eyebrow">{t('about.hello')}</p>
                 <p className="mt-5 text-[22px] font-medium leading-snug tracking-tight md:text-[26px]">
-                  I'm an AI research engineer at <span className="text-gradient">{profile.company}</span>, working on
-                  LLM post-training evaluation, benchmark pipelines and dataset quality — and I build full-stack products too.
+                  {t('about.bio')[0]} <span className="text-gradient">{profile.company}</span>
+                  {t('about.bio')[1]}
                 </p>
               </div>
               <p className="mt-8 text-[15px] leading-relaxed text-bone-muted">
-                From React interfaces to Node &amp; Python services and Dockerised pipelines, I love taking an idea all the
-                way to production — clean, fast and genuinely delightful to use.
+                {t('about.bio2')}
               </p>
             </Spot>
           </Reveal>
@@ -59,7 +56,7 @@ export default function About() {
                 <span className="text-[clamp(2.75rem,4vw,3.75rem)] font-medium leading-none tracking-tightest">
                   <CountUp value={s.value} className="text-gradient" />
                 </span>
-                <span className="mt-6 text-[13px] leading-snug text-bone-muted sm:text-sm">{s.label}</span>
+                <span className="mt-6 text-[13px] leading-snug text-bone-muted sm:text-sm">{lang === 'hi' ? listHi.stats[i] : s.label}</span>
               </Spot>
             </Reveal>
           ))}
@@ -75,10 +72,10 @@ export default function About() {
               </div>
               <div>
                 <p className="eyebrow flex items-center gap-2">
-                  <span className="live-dot" /> Currently
+                  <span className="live-dot" /> {t('about.currently')}
                 </p>
                 <p className="mt-2 text-xl font-medium tracking-tight">AI Research Engineer @ {profile.company}</p>
-                <p className="mt-1 text-sm text-bone-muted">Promoted from Software Engineer · LLM evaluation & benchmarks</p>
+                <p className="mt-1 text-sm text-bone-muted">{t('about.promoted')}</p>
               </div>
             </Spot>
           </Reveal>
@@ -101,7 +98,7 @@ export default function About() {
             <Spot className={`${cell} flex flex-col justify-between`}>
               <Icon name="heart" className="h-6 w-6 text-accent" />
               <p className="text-[15px] leading-relaxed text-bone-muted">
-                <span className="text-bone">Clean code, kind UX,</span> and shipping on time — every time.
+                <span className="text-bone">{t('about.values')[0]}</span> {t('about.values')[1]}
               </p>
             </Spot>
           </Reveal>
@@ -109,7 +106,7 @@ export default function About() {
           {/* Toolkit */}
           <Reveal className="col-span-2 lg:col-span-4">
             <Spot className={cell}>
-              <p className="eyebrow">Toolkit</p>
+              <p className="eyebrow">{t('about.toolkit')}</p>
               <div className="mt-6 grid grid-cols-2 gap-x-6 gap-y-8 sm:grid-cols-3 lg:grid-cols-6">
                 {stack.map((g) => (
                   <div key={g.group}>

@@ -256,7 +256,7 @@ export function BackToTop() {
           animate={{ opacity: 1, scale: 1, y: 0 }}
           exit={{ opacity: 0, scale: 0.6, y: 20 }}
           onClick={() => scrollToId('#top')}
-          className="glass fixed bottom-6 right-6 z-[45] grid h-14 w-14 place-items-center rounded-full !bg-ink-900/70"
+          className="glass fixed bottom-[92px] right-6 z-[45] grid h-14 w-14 place-items-center rounded-full !bg-ink-900/70"
           aria-label="Back to top"
           data-cursor="Top"
         >
@@ -312,6 +312,10 @@ export function CommandPalette() {
       { group: 'Actions', label: 'Share portfolio / QR code', icon: 'spark', run: () => openShare() },
       { group: 'Actions', label: 'Toggle sound effects', icon: 'bolt', run: () => toggleSound() },
       { group: 'Actions', label: 'Keyboard shortcuts', icon: 'code', run: () => window.dispatchEvent(new Event('app:shortcuts')) },
+      { group: 'Actions', label: 'Book a 15-min call 📅', icon: 'spark', run: () => window.dispatchEvent(new Event('app:book')) },
+      { group: 'Actions', label: 'Chat on WhatsApp', icon: 'heart', run: () => window.open(`https://wa.me/${profile.phoneHref.replace(/\D/g, '')}`, '_blank', 'noopener') },
+      { group: 'Actions', label: 'हिंदी / English', icon: 'layers', run: () => import('../i18n').then((m) => m.toggleLang()) },
+      { group: 'Actions', label: 'Install as an app', icon: 'bolt', run: () => window.dispatchEvent(new Event('app:install')) },
       { group: 'Actions', label: 'Copy email address', icon: 'code', run: copyEmail },
       { group: 'Actions', label: 'Download résumé', icon: 'layers', run: () => { const a = document.createElement('a'); a.href = profile.resume; a.download = 'Rishav_Kumar_Resume.pdf'; a.click(); toast('Downloading résumé…'); } },
       { group: 'Actions', label: 'Send an email', icon: 'heart', run: () => (window.location.href = `mailto:${profile.email}`) },

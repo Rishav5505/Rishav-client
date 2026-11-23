@@ -3,6 +3,7 @@ import { AnimatePresence, motion } from 'framer-motion';
 import { certifications, profile } from '../data';
 import { Arrow, CountUp, Download, Icon, Reveal, SectionHead, Spot, ease } from './ui';
 import { lockScroll } from './Extras';
+import { T, useLang } from '../i18n';
 
 function CertModal({ cert, onClose }) {
   useEffect(() => {
@@ -212,6 +213,7 @@ function Repos() {
 }
 
 export default function Credentials() {
+  const { t, lang } = useLang();
   const [active, setActive] = useState(null);
 
   return (
@@ -220,12 +222,8 @@ export default function Credentials() {
         <SectionHead
           index="09"
           label="Credentials"
-          title={
-            <>
-              Proof, <span className="text-gradient font-serif font-normal italic">on paper</span>
-            </>
-          }
-          aside="Certifications, awards and résumés — open any of them right here."
+          title={<T k="credentials.title" />}
+          aside={t('credentials.aside')}
         />
 
         <div className="grid gap-16 lg:grid-cols-12">

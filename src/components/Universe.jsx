@@ -1,6 +1,7 @@
 import { stack } from '../data';
 import Lazy3D, { SkillsScene } from '../three/Lazy3D';
 import { Reveal, SectionHead } from './ui';
+import { T, useLang } from '../i18n';
 
 const items = stack.flatMap((g) => g.items);
 
@@ -17,18 +18,15 @@ function Fallback() {
 }
 
 export default function Universe() {
+  const { t, lang } = useLang();
   return (
     <section id="universe" className="relative py-24 md:py-32">
       <div className="container-site">
         <SectionHead
           index="06"
           label="Tech universe"
-          title={
-            <>
-              My <span className="text-gradient font-serif font-normal italic">tech universe</span>, in 3D
-            </>
-          }
-          aside="Every tool I work with, orbiting one idea: build things that work beautifully. Grab it and give it a spin."
+          title={<T k="universe.title" />}
+          aside={t('universe.aside')}
         />
 
         <div className="grid items-center gap-10 lg:grid-cols-12">

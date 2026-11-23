@@ -3,6 +3,7 @@ import { AnimatePresence, motion } from 'framer-motion';
 import { projects } from '../data';
 import Lazy3D, { LaptopScene } from '../three/Lazy3D';
 import { Arrow, Magnetic, Reveal, SectionHead, ease } from './ui';
+import { T, useLang } from '../i18n';
 
 const images = projects.map((p) => p.image);
 
@@ -15,6 +16,7 @@ function Fallback({ index }) {
 }
 
 export default function Showcase() {
+  const { t, lang } = useLang();
   const [index, setIndex] = useState(0);
   const [paused, setPaused] = useState(false);
   const p = projects[index];
@@ -31,12 +33,8 @@ export default function Showcase() {
         <SectionHead
           index="03"
           label="Showcase"
-          title={
-            <>
-              Live on <span className="text-gradient font-serif font-normal italic">every screen</span>
-            </>
-          }
-          aside="A 3D tour of the products I've shipped. Move your mouse to look around — pick any project below."
+          title={<T k="showcase.title" />}
+          aside={t('showcase.aside')}
         />
 
         <div className="grid items-center gap-10 lg:grid-cols-12" onMouseEnter={() => setPaused(true)} onMouseLeave={() => setPaused(false)}>

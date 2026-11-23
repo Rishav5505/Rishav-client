@@ -22,8 +22,8 @@ module.exports = {
         fg: "rgb(var(--fg-c) / <alpha-value>)",
       },
       fontFamily: {
-        sans: ["Geist", "Inter", "system-ui", "sans-serif"],
-        serif: ["'Instrument Serif'", "Georgia", "serif"],
+        sans: ["Geist", "'Noto Sans Devanagari'", "Inter", "system-ui", "sans-serif"],
+        serif: ["'Instrument Serif'", "'Noto Serif Devanagari'", "Georgia", "serif"],
         mono: ["'Geist Mono'", "ui-monospace", "monospace"],
       },
       letterSpacing: {

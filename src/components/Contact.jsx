@@ -4,6 +4,8 @@ import { profile } from '../data';
 import { Arrow, Magnetic, Reveal, ease } from './ui';
 import { SoundToggle, confetti, copyEmail, openShare, playSound } from './Extras';
 import ParticleName from './ParticleName';
+import { useLang } from '../i18n';
+import { openBooking, openInstall, waLink } from './Engage';
 
 const field =
   'w-full border-b bg-transparent py-4 text-[16px] text-bone placeholder:text-bone-dim outline-none transition-colors focus:border-pink-300/70 hairline';
@@ -49,6 +51,7 @@ function Chip({ on, children, onClick }) {
 }
 
 export default function Contact() {
+  const { t } = useLang();
   const [form, setForm] = useState({ name: '', email: '', message: '' });
   const [pick, setPick] = useState({ type: [], budget: '', timeline: '' });
   const [sent, setSent] = useState(false);
@@ -109,9 +112,9 @@ export default function Contact() {
             Contact
           </span>
           <h2 className="mt-8 text-[clamp(3rem,9vw,8rem)] font-medium leading-[0.95] tracking-tightest">
-            Let's make something
+            {t('contact.title')[0]}
             <br />
-            <span className="text-gradient font-serif font-normal italic">lovely together.</span>
+            <span className="text-gradient font-serif font-normal italic">{t('contact.title')[1]}</span>
           </h2>
         </Reveal>
 
@@ -123,20 +126,28 @@ export default function Contact() {
                 {awake ? '🟢' : '🌙'}
               </span>
               <div>
-                <p className="text-[15px] font-medium">{awake ? 'Online now — replies within a few hours' : 'It’s night in Gurugram'}</p>
+                <p className="text-[15px] font-medium">{awake ? t('contact.online') : t('contact.night')}</p>
                 <p className="text-[13px] text-bone-muted">
-                  {awake ? `Local time ${time} IST` : `${time} IST · I’ll reply first thing in the morning`}
+                  {awake ? `${t('contact.local')} ${time} IST` : `${time} IST · ${t('contact.morning')}`}
                 </p>
               </div>
             </div>
 
             <p className="max-w-sm text-lg leading-relaxed text-bone-muted">
-              Tell me about what you're building. I usually reply within 24 hours.
+              {t('contact.intro')}
             </p>
             <button type="button" onClick={copyEmail} className="btn-ghost group mt-6 !py-3" data-cursor="Copy">
               <span className="font-mono text-[13px]">{profile.email}</span>
-              <span className="rounded-md bg-fg/10 px-2 py-0.5 text-[11px] text-bone-muted transition-colors group-hover:text-bone">Copy</span>
+              <span className="rounded-md bg-fg/10 px-2 py-0.5 text-[11px] text-bone-muted transition-colors group-hover:text-bone">{t('contact.copy')}</span>
             </button>
+            <div className="mt-3 flex flex-wrap gap-2">
+              <a href={waLink(t('wa.msg'))} target="_blank" rel="noopener noreferrer" className="btn !py-3 bg-[#25D366] text-white hover:opacity-90">
+                💬 {t('contact.whatsapp')}
+              </a>
+              <button type="button" onClick={openBooking} className="btn-primary !py-3">
+                📅 {t('contact.book')}
+              </button>
+            </div>
             <dl className="mt-10 border-t hairline">
               {details.map((d) => (
                 <div key={d.label} className="flex items-center justify-between gap-4 border-b py-4 hairline">
@@ -154,7 +165,7 @@ export default function Contact() {
                 </div>
               ))}
               <div className="flex items-center justify-between gap-4 border-b py-4 hairline">
-                <dt className="eyebrow">Based in</dt>
+                <dt className="eyebrow">{t('contact.based')}</dt>
                 <dd className="text-[15px]">{profile.location}</dd>
               </div>
             </dl>
@@ -164,7 +175,7 @@ export default function Contact() {
             <form onSubmit={submit} className="space-y-2">
               {/* Project brief */}
               <div className="mb-6 flex items-center justify-between">
-                <p className="eyebrow">Project brief</p>
+                <p className="eyebrow">{t('contact.brief')}</p>
                 <div className="flex items-center gap-2">
                   <div className="h-1 w-24 overflow-hidden rounded-full bg-fg/10">
                     <motion.div
@@ -180,7 +191,7 @@ export default function Contact() {
               {Object.entries(brief).map(([key, b]) => (
                 <fieldset key={key} className="mb-6">
                   <legend className="mb-3 text-[14px] font-medium">
-                    {b.label} {b.multi && <span className="text-[12px] font-normal text-bone-dim">· pick any</span>}
+                    {t(`contact.q.${key}`)} {b.multi && <span className="text-[12px] font-normal text-bone-dim">{t('contact.pick')}</span>}
                   </legend>
                   <div className="flex flex-wrap gap-2">
                     {b.options.map((o) => (
@@ -195,11 +206,11 @@ export default function Contact() {
               <div className="grid gap-2 sm:grid-cols-2 sm:gap-8">
                 <label className="block">
                   <span className="sr-only">Your name</span>
-                  <input name="name" required value={form.name} onChange={update} placeholder="Your name" className={field} autoComplete="name" />
+                  <input name="name" required value={form.name} onChange={update} placeholder={t('contact.name')} className={field} autoComplete="name" />
                 </label>
                 <label className="block">
                   <span className="sr-only">Your email</span>
-                  <input name="email" type="email" required value={form.email} onChange={update} placeholder="Email address" className={field} autoComplete="email" />
+                  <input name="email" type="email" required value={form.email} onChange={update} placeholder={t('contact.email')} className={field} autoComplete="email" />
                 </label>
               </div>
               <label className="block">
@@ -210,25 +221,25 @@ export default function Contact() {
                   rows={4}
                   value={form.message}
                   onChange={update}
-                  placeholder="A few lines about your idea, goals or the problem to solve"
+                  placeholder={t('contact.msg')}
                   className={`${field} resize-none`}
                 />
               </label>
               <div className="flex flex-wrap items-center gap-6 pt-8">
                 <Magnetic>
                   <button type="submit" className="btn-primary group !px-8 !py-4">
-                    Send enquiry
+                    {t('contact.send')}
                     <Arrow className="transition-transform duration-300 group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
                   </button>
                 </Magnetic>
                 <a href={profile.form} target="_blank" rel="noopener noreferrer" className="link-underline text-sm text-bone-muted hover:text-bone">
-                  or use the Google Form
+                  {t('contact.form')}
                 </a>
               </div>
               <AnimatePresence>
                 {sent && (
                   <motion.p initial={{ opacity: 0, y: 6 }} animate={{ opacity: 1, y: 0 }} className="pt-4 text-sm text-accent" role="status">
-                    Your email app should open with the full brief ready — just hit send. 💌
+                    {t('contact.sent')}
                   </motion.p>
                 )}
               </AnimatePresence>
@@ -239,16 +250,17 @@ export default function Contact() {
         <ParticleName />
 
         <footer className="mt-16 flex pb-24 md:pb-0 flex-col gap-6 border-t pt-8 text-[13px] text-bone-dim hairline md:flex-row md:items-center md:justify-between">
-          <p>© {new Date().getFullYear()} {profile.name}. Designed & engineered by hand.</p>
+          <p>© {new Date().getFullYear()} {profile.name}. {t('footer.made')}</p>
           <div className="flex flex-wrap items-center gap-x-6 gap-y-3">
-            <button onClick={openShare} className="link-underline hover:text-bone">Share / QR</button>
+            <button onClick={openShare} className="link-underline hover:text-bone">{t('footer.share')}</button>
+            <button onClick={openInstall} className="link-underline hover:text-bone">📲 {t('footer.install')}</button>
             <SoundToggle className="hover:text-bone" />
             <button onClick={() => window.dispatchEvent(new Event('app:shortcuts'))} className="link-underline hidden hover:text-bone md:inline">
-              Shortcuts <kbd className="ml-1 rounded border border-fg/15 px-1 font-mono text-[10px]">?</kbd>
+              {t('footer.shortcuts')} <kbd className="ml-1 rounded border border-fg/15 px-1 font-mono text-[10px]">?</kbd>
             </button>
             <a href={profile.linkedin} target="_blank" rel="noopener noreferrer" className="link-underline hover:text-bone">LinkedIn</a>
             <a href={profile.github} target="_blank" rel="noopener noreferrer" className="link-underline hover:text-bone">GitHub</a>
-            <a href="#top" className="link-underline hover:text-bone">Back to top ↑</a>
+            <a href="#top" className="link-underline hover:text-bone">{t('footer.top')}</a>
           </div>
         </footer>
       </div>

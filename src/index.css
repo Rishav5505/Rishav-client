@@ -66,7 +66,7 @@ body { transition: background-color 0.5s var(--ease), color 0.5s var(--ease); }
     min-width: 320px;
     background: var(--bg);
     color: var(--fg);
-    font-family: Geist, Inter, system-ui, sans-serif;
+    font-family: Geist, 'Noto Sans Devanagari', Inter, system-ui, sans-serif;
     line-height: 1.55;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
@@ -345,3 +345,13 @@ html.party .text-gradient { animation-duration: 1.2s; }
   * { animation: none !important; transition: none !important; }
   .resume-sheet { background: #fff !important; }
 }
+
+/* ---------- Hindi: Devanagari needs looser tracking and taller lines for its matras ---------- */
+html[lang='hi'] .tracking-tightest,
+html[lang='hi'] .tracking-tight { letter-spacing: 0 !important; }
+html[lang='hi'] h1, html[lang='hi'] h2, html[lang='hi'] h3 { line-height: 1.25 !important; }
+html[lang='hi'] .font-serif.italic { font-style: normal; }
+
+/* Wide tracking breaks Devanagari conjuncts (प्रो जे क्ट) — keep Hindi labels tight */
+html[lang='hi'] .eyebrow,
+html[lang='hi'] [class*='tracking-[0.1'] { letter-spacing: 0 !important; }

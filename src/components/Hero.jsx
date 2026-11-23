@@ -4,6 +4,7 @@ import Lazy3D, { HeroScene } from '../three/Lazy3D';
 import portrait from '../assets/w_rishav_profile.webp';
 import { marquee, profile } from '../data';
 import { Arrow, Download, Icon, Magnetic, ease } from './ui';
+import { useLang } from '../i18n';
 
 const D = 1.55; // wait for the intro curtain
 const words = ['RL environments', 'agent evals', 'AI systems', 'web products'];
@@ -94,6 +95,7 @@ function VelocityMarquee() {
 }
 
 export default function Hero() {
+  const { t } = useLang();
   return (
     <section id="top" className="relative overflow-x-clip pt-[112px] md:pt-[140px]">
       {/* Floating 3D glass shapes */}
@@ -113,38 +115,37 @@ export default function Hero() {
           <div className="lg:col-span-7">
             <motion.div {...up(0)} className="glass mb-8 inline-flex items-center gap-3 rounded-full py-1.5 pl-2 pr-4">
               <span className="flex items-center gap-2 rounded-full bg-fg/[0.06] px-2.5 py-1 text-[12px]">
-                <span className="live-dot" /> Available
+                <span className="live-dot" /> {t('hero.available')}
               </span>
               <span className="text-[13px] text-bone-muted">
-                Currently at <span className="text-bone">{profile.company}</span>
+                {t('hero.currently')} <span className="text-bone">{profile.company}</span>
               </span>
             </motion.div>
 
             <motion.p {...up(0.08)} className="mb-4 font-serif text-2xl italic text-bone-muted md:text-3xl">
-              Hi, I'm Rishav <span className="wave not-italic">👋</span>
+              {t('hero.hi')} <span className="wave not-italic">👋</span>
             </motion.p>
 
             <motion.h1 {...up(0.16)} className="text-[clamp(2.75rem,6.6vw,6rem)] font-medium leading-[1.02] tracking-tightest">
-              <span className="sr-only">Rishav Kumar, AI Research Engineer — </span>I build <br />
+              <span className="sr-only">Rishav Kumar, AI Research Engineer — </span>{t('hero.build')} <br />
               <Rotator /> <br />
-              that <span className="font-serif font-normal italic">perform.</span>
+              {t('hero.that')} <span className="font-serif font-normal italic">{t('hero.perform')}</span>
             </motion.h1>
 
             <motion.p {...up(0.3)} className="mt-8 max-w-xl text-[17px] leading-relaxed text-bone-muted md:text-lg">
-              AI research engineer at {profile.company} — LLM post-training evaluation, benchmark pipelines and
-              model analysis, plus polished full-stack products shipped to production.
+              {t('hero.para')}
             </motion.p>
 
             <motion.div {...up(0.42)} className="mt-10 flex flex-wrap items-center gap-3">
               <Magnetic>
                 <a href="#work" className="btn-primary group !px-7 !py-4">
-                  See my work
+                  {t('hero.cta')}
                   <Arrow className="transition-transform duration-300 group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
                 </a>
               </Magnetic>
               <Magnetic>
                 <a href="#/resume" className="btn-ghost !px-7 !py-4">
-                  <Download /> Résumé
+                  <Download /> {t('hero.resume')}
                 </a>
               </Magnetic>
             </motion.div>

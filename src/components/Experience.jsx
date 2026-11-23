@@ -2,8 +2,10 @@ import { useRef } from 'react';
 import { motion, useScroll, useSpring } from 'framer-motion';
 import { experience } from '../data';
 import { Reveal, SectionHead, Spot } from './ui';
+import { T, useLang } from '../i18n';
 
 export default function Experience() {
+  const { t, lang } = useLang();
   const ref = useRef(null);
   const { scrollYProgress } = useScroll({ target: ref, offset: ['start 75%', 'end 60%'] });
   const fill = useSpring(scrollYProgress, { stiffness: 90, damping: 25 });
@@ -14,12 +16,8 @@ export default function Experience() {
         <SectionHead
           index="08"
           label="Journey"
-          title={
-            <>
-              Where I've <span className="text-gradient font-serif font-normal italic">grown</span>
-            </>
-          }
-          aside="From an LLM post-training internship to a PPO, a full-time role and a promotion to AI Research Engineer at Ethara AI."
+          title={<T k="experience.title" />}
+          aside={t('experience.aside')}
         />
 
         <div ref={ref} className="relative mx-auto max-w-4xl">

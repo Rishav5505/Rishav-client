@@ -1,9 +1,11 @@
 import { services } from '../data';
 import { Icon, Reveal, SectionHead, Spot } from './ui';
+import { T, listHi, useLang } from '../i18n';
 
 const icons = ['brain', 'layers', 'bolt', 'server', 'shield'];
 
 export default function Services() {
+  const { t, lang } = useLang();
   return (
     <section id="services" className="py-24 md:py-32">
       <div className="container-site">
@@ -11,12 +13,8 @@ export default function Services() {
           center
           index="04"
           label="Services"
-          title={
-            <>
-              How I can <span className="text-gradient font-serif font-normal italic">help you</span>
-            </>
-          }
-          aside="From model evaluation infrastructure to polished customer-facing products — one engineer, the whole stack."
+          title={<T k="services.title" />}
+          aside={t('services.aside')}
         />
 
         <div className="grid gap-4 md:grid-cols-6">
@@ -35,8 +33,8 @@ export default function Services() {
                     <Icon name={icons[i]} className="h-6 w-6" />
                   </div>
                 </div>
-                <h3 className="text-2xl font-medium tracking-tight">{s.title}</h3>
-                <p className="mt-3 text-[15px] leading-relaxed text-bone-muted">{s.body}</p>
+                <h3 className="text-2xl font-medium tracking-tight">{lang === 'hi' ? listHi.services[i][0] : s.title}</h3>
+                <p className="mt-3 text-[15px] leading-relaxed text-bone-muted">{lang === 'hi' ? listHi.services[i][1] : s.body}</p>
                 <span className="mt-auto pt-8 font-mono text-xs text-bone-dim">0{i + 1}</span>
               </Spot>
             </Reveal>

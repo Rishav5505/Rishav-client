@@ -1,6 +1,7 @@
 import { useRef } from 'react';
 import { motion, useScroll, useTransform } from 'framer-motion';
 import { Icon, SectionHead } from './ui';
+import { T, listHi, useLang } from '../i18n';
 
 const steps = [
   {
@@ -30,6 +31,7 @@ const steps = [
 ];
 
 function Card({ step, i, total, progress }) {
+  const { lang } = useLang();
   // Cards that have been scrolled past shrink slightly and dim, creating a stacked deck.
   const start = i / total;
   const scale = useTransform(progress, [start, 1], [1, 1 - (total - 1 - i) * 0.05]);
@@ -59,7 +61,7 @@ function Card({ step, i, total, progress }) {
                 <Icon name={step.icon} className="h-10 w-10" />
               </div>
               <div className="md:text-right">
-                <p className="eyebrow mb-3">You get</p>
+                <p className="eyebrow mb-3">{lang === 'hi' ? 'आपको मिलेगा' : 'You get'}</p>
                 <ul className="flex flex-wrap gap-2 md:justify-end">
                   {step.out.map((o) => (
                     <li key={o} className="rounded-full border border-fg/10 bg-fg/[0.04] px-3 py-1.5 text-[13px]">
@@ -77,6 +79,7 @@ function Card({ step, i, total, progress }) {
 }
 
 export default function Process() {
+  const { t, lang } = useLang();
   const ref = useRef(null);
   const { scrollYProgress } = useScroll({ target: ref, offset: ['start start', 'end end'] });
 
@@ -86,16 +89,12 @@ export default function Process() {
         <SectionHead
           index="05"
           label="Process"
-          title={
-            <>
-              How we'll <span className="text-gradient font-serif font-normal italic">work together</span>
-            </>
-          }
-          aside="A simple, transparent process — so you always know what's happening and what comes next."
+          title={<T k="process.title" />}
+          aside={t('process.aside')}
         />
         <div ref={ref} className="relative">
           {steps.map((s, i) => (
-            <Card key={s.title} step={s} i={i} total={steps.length} progress={scrollYProgress} />
+            <Card key={s.title} step={lang === 'hi' ? { ...s, title: listHi.process[i][0], body: listHi.process[i][1], out: listHi.process[i][2] } : s} i={i} total={steps.length} progress={scrollYProgress} />
           ))}
         </div>
       </div>

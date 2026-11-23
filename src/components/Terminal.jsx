@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from 'react';
 import { certifications, experience, profile, projects, services, stack } from '../data';
 import { confetti, copyEmail, scrollToId, toggleTheme } from './Extras';
 import { Reveal, SectionHead } from './ui';
+import { T, useLang } from '../i18n';
 
 const C = {
   a: 'text-accent',
@@ -166,6 +167,7 @@ const banner = [
 ];
 
 export default function Terminal() {
+  const { t, lang } = useLang();
   const [log, setLog] = useState([{ type: 'out', lines: banner }]);
   const [value, setValue] = useState('');
   const [hist, setHist] = useState([]);
@@ -225,12 +227,8 @@ export default function Terminal() {
           center
           index="07"
           label="Terminal"
-          title={
-            <>
-              Prefer the <span className="text-gradient font-serif font-normal italic">command line?</span>
-            </>
-          }
-          aside="A tiny interactive shell — explore my work the developer way. Type help to begin."
+          title={<T k="terminal.title" />}
+          aside={t('terminal.aside')}
         />
 
         <Reveal y={40} className="mx-auto max-w-4xl">

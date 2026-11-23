@@ -351,3 +351,10 @@ export const resumeData = {
     ['Drone Technology Bootcamp', 'IIT Mandi'],
   ],
 };
+
+/**
+ * Real quotes only — the Testimonials section stays hidden while this is empty.
+ * Example shape:
+ * { quote: 'Rishav …', name: 'Full Name', role: 'Role, Company', link: 'https://linkedin.com/in/…', photo: '' }
+ */
+export const testimonials = [];

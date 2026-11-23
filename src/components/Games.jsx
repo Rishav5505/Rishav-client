@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { read } from '../games/shared';
 import { Arrow, Magnetic, Reveal, SectionHead, Spot } from './ui';
+import { T, useLang } from '../i18n';
 
 const grad = { background: 'linear-gradient(135deg, var(--g1), var(--g2), var(--g3))' };
 
@@ -15,6 +16,7 @@ const picks = [
 const spans = ['md:col-span-2', 'md:col-span-2', 'md:col-span-2', 'md:col-span-3', 'md:col-span-3'];
 
 export default function Games() {
+  const { t, lang } = useLang();
   const [, force] = useState(0);
   useEffect(() => {
     const on = () => force((n) => n + 1);
@@ -33,12 +35,8 @@ export default function Games() {
           center
           index="10"
           label="Arcade"
-          title={
-            <>
-              Take a break — <span className="text-gradient font-serif font-normal italic">play a game</span>
-            </>
-          }
-          aside="25 mini-games I built from scratch — arcade, puzzles, brain-teasers and AI opponents. Here are a few favourites."
+          title={<T k="games.title" />}
+          aside={t('games.aside')}
         />
 
         <div className="grid gap-4 md:grid-cols-6">

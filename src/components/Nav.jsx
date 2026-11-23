@@ -3,19 +3,21 @@ import { AnimatePresence, motion } from 'framer-motion';
 import { profile } from '../data';
 import { ease } from './ui';
 import { ThemeToggle, lockScroll, openPalette } from './Extras';
+import { LangToggle, useLang } from '../i18n';
 
 const links = [
-  { href: '#about', label: 'About', wide: true },
-  { href: '#work', label: 'Work' },
-  { href: '#services', label: 'Services', wide: true },
-  { href: '#experience', label: 'Journey' },
-  { href: '#contact', label: 'Contact' },
-  { href: '#/resume', label: 'Résumé', route: 'resume' },
-  { href: '#/lab', label: 'Lab', route: 'lab', emoji: '🧪' },
-  { href: '#/games', label: 'Games', route: 'games', emoji: '🎮' },
+  { href: '#about', k: 'nav.about', label: 'About', wide: true },
+  { href: '#work', k: 'nav.work', label: 'Work' },
+  { href: '#services', k: 'nav.services', label: 'Services', wide: true },
+  { href: '#experience', k: 'nav.journey', label: 'Journey' },
+  { href: '#contact', k: 'nav.contact', label: 'Contact' },
+  { href: '#/resume', k: 'nav.resume', label: 'Résumé', route: 'resume' },
+  { href: '#/lab', k: 'nav.lab', label: 'Lab', route: 'lab', emoji: '🧪' },
+  { href: '#/games', k: 'nav.games', label: 'Games', route: 'games', emoji: '🎮' },
 ];
 
 export default function Nav({ route = 'home' }) {
+  const { t } = useLang();
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
   const [active, setActive] = useState('');
@@ -79,7 +81,7 @@ export default function Nav({ route = 'home' }) {
                 />
               )}
               <span className="relative">
-                {l.label}
+                {t(l.k)}
                 {l.emoji && <span className="ml-1">{l.emoji}</span>}
               </span>
             </a>
@@ -87,17 +89,18 @@ export default function Nav({ route = 'home' }) {
         </nav>
 
         <div className="flex items-center gap-2 sm:gap-3">
+          <LangToggle />
           <ThemeToggle />
           <button
             onClick={openPalette}
             className="glass hidden items-center gap-2 whitespace-nowrap rounded-full py-2 pl-3 pr-2 text-[12px] text-bone-muted transition-colors hover:text-bone xl:flex"
             aria-label="Open command palette"
           >
-            Quick menu
+            {t('nav.quick')}
             <kbd className="rounded-md border border-fg/10 bg-fg/5 px-1.5 py-0.5 font-mono text-[10px]">Ctrl K</kbd>
           </button>
           <a href="#contact" className="btn-primary hidden whitespace-nowrap !px-5 !py-2.5 text-[13px] lg:inline-flex">
-            Let's talk
+            {t('nav.talk')}
           </a>
           <button
             className="grid h-10 w-10 place-items-center rounded-full border md:hidden hairline"
@@ -135,7 +138,7 @@ export default function Nav({ route = 'home' }) {
                   transition={{ delay: 0.08 + i * 0.05, duration: 0.5, ease }}
                   className="flex items-baseline justify-between border-b py-4 hairline"
                 >
-                  <span className="text-4xl font-medium tracking-tightest">{l.label}</span>
+                  <span className="text-4xl font-medium tracking-tightest">{t(l.k)}</span>
                   <span className="font-mono text-xs text-bone-dim">0{i + 1}</span>
                 </motion.a>
               ))}

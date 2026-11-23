@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
 import { projectFilters, projects } from '../data';
 import { Arrow, Magnetic, Reveal, SectionHead, Spot, Tilt, ease } from './ui';
+import { T, useLang } from '../i18n';
 
 function ProjectCard({ p, i }) {
   return (
@@ -71,6 +72,7 @@ function ProjectCard({ p, i }) {
 }
 
 export default function Work() {
+  const { t, lang } = useLang();
   const [all, setAll] = useState(false);
   const [filter, setFilter] = useState('All');
   const filtered = filter === 'All' ? projects : projects.filter((p) => p.filters.includes(filter));
@@ -82,12 +84,8 @@ export default function Work() {
         <SectionHead
           index="02"
           label="Selected work"
-          title={
-            <>
-              Things I've <span className="text-gradient font-serif font-normal italic">built & shipped</span>
-            </>
-          }
-          aside="Real products, live on the internet. Open any card for the full case study."
+          title={<T k="work.title" />}
+          aside={t('work.aside')}
         />
 
         {/* Filter tabs */}

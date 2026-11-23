@@ -16,6 +16,7 @@ import ChatBot from './components/ChatBot';
 import { BackToTop, CommandPalette, Cursor, ShareModal, Shortcuts, SmoothScroll, Toaster, UISounds } from './components/Extras';
 import Process from './components/Process';
 import Games from './components/Games';
+import { BookCall, InstallApp, Testimonials, WhatsAppButton } from './components/Engage';
 
 const GamesPage = lazy(() => import('./pages/GamesPage'));
 const CaseStudy = lazy(() => import('./pages/CaseStudy'));
@@ -86,6 +87,9 @@ export default function App() {
       <BackToTop />
       <ChatBot />
       <UISounds />
+      <WhatsAppButton />
+      <BookCall />
+      <InstallApp />
       <TabTitle />
       <ShareModal />
       <Shortcuts />
@@ -113,6 +117,7 @@ export default function App() {
         <Experience />
         <Credentials />
         <Games />
+        <Testimonials />
         <Contact />
       </main>
       )}
