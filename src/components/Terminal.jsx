@@ -119,7 +119,7 @@ const commands = {
   goto: {
     desc: 'Scroll to a section: goto work',
     run: (args) => {
-      const map = { home: '#top', about: '#about', work: '#work', services: '#services', laptop: '#showcase', universe: '#universe', journey: '#experience', credentials: '#credentials', arcade: '#arcade', games: '#/games', resume: '#/resume', lab: '#/lab', contact: '#contact' };
+      const map = { home: '#top', about: '#about', work: '#work', services: '#services', laptop: '#showcase', universe: '#universe', journey: '#experience', credentials: '#credentials', arcade: '#arcade', games: '#/games', resume: '#/resume', lab: '#/lab', builder: '#/builder', contact: '#contact' };
       const id = map[(args[0] || '').toLowerCase()];
       if (!id) return [[[C.m, 'Sections: ' + Object.keys(map).join(', ')]]];
       setTimeout(() => scrollToId(id), 150);

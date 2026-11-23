@@ -6,14 +6,15 @@ import { ThemeToggle, lockScroll, openPalette } from './Extras';
 import { LangToggle, useLang } from '../i18n';
 
 const links = [
-  { href: '#about', k: 'nav.about', label: 'About', wide: true },
+  { href: '#about', k: 'nav.about', label: 'About', wide: 'xxl' },
   { href: '#work', k: 'nav.work', label: 'Work' },
-  { href: '#services', k: 'nav.services', label: 'Services', wide: true },
-  { href: '#experience', k: 'nav.journey', label: 'Journey' },
+  { href: '#services', k: 'nav.services', label: 'Services', wide: 'xxl' },
+  { href: '#experience', k: 'nav.journey', label: 'Journey', wide: true },
   { href: '#contact', k: 'nav.contact', label: 'Contact' },
   { href: '#/resume', k: 'nav.resume', label: 'Résumé', route: 'resume' },
   { href: '#/lab', k: 'nav.lab', label: 'Lab', route: 'lab', emoji: '🧪' },
   { href: '#/games', k: 'nav.games', label: 'Games', route: 'games', emoji: '🎮' },
+  { href: '#/builder', k: 'nav.builder', label: 'Builder', route: 'builder', emoji: '✨' },
 ];
 
 export default function Nav({ route = 'home' }) {
@@ -70,7 +71,7 @@ export default function Nav({ route = 'home' }) {
               key={l.href}
               href={l.href}
               aria-current={isActive(l) ? 'page' : undefined}
-              className={`relative whitespace-nowrap rounded-full px-3 py-1.5 text-[13px] transition-colors ${l.wide ? 'hidden xl:block' : ''} ${isActive(l) ? 'text-white' : 'text-bone-muted hover:text-bone'}`}
+              className={`relative whitespace-nowrap rounded-full px-3 py-1.5 text-[13px] transition-colors ${l.wide === 'xxl' ? 'hidden' : l.wide ? 'hidden xl:block' : ''} ${isActive(l) ? 'text-white' : 'text-bone-muted hover:text-bone'}`}
             >
               {isActive(l) && (
                 <motion.span

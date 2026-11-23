@@ -22,8 +22,9 @@ const GamesPage = lazy(() => import('./pages/GamesPage'));
 const CaseStudy = lazy(() => import('./pages/CaseStudy'));
 const ResumePage = lazy(() => import('./pages/ResumePage'));
 const LabPage = lazy(() => import('./pages/LabPage'));
-const PAGES = { games: GamesPage, work: CaseStudy, resume: ResumePage, lab: LabPage };
-const TITLES = { games: 'The Arcade — 25 mini-games | Rishav Kumar', resume: 'Résumé — Rishav Kumar', lab: 'AI Lab — Rishav Kumar' };
+const BuilderPage = lazy(() => import('./pages/BuilderPage'));
+const PAGES = { games: GamesPage, work: CaseStudy, resume: ResumePage, lab: LabPage, builder: BuilderPage };
+const TITLES = { games: 'The Arcade — 25 mini-games | Rishav Kumar', resume: 'Résumé — Rishav Kumar', lab: 'AI Lab — Rishav Kumar', builder: 'Site Builder — Rishav Kumar' };
 // '#/games', '#/work/<id>', '#/resume', '#/lab' are pages; everything else is the home page.
 const getRoute = () => {
   const m = window.location.hash.match(/^#\/(\w+)/);

@@ -9,7 +9,7 @@ import { useEffect, useState } from 'react';
 const dict = {
   en: {
     'nav.about': 'About', 'nav.work': 'Work', 'nav.services': 'Services', 'nav.journey': 'Journey', 'nav.contact': 'Contact',
-    'nav.resume': 'Résumé', 'nav.lab': 'Lab', 'nav.games': 'Games', 'nav.talk': "Let's talk", 'nav.quick': 'Quick menu',
+    'nav.resume': 'Résumé', 'nav.lab': 'Lab', 'nav.games': 'Games', 'nav.builder': 'Builder', 'nav.talk': "Let's talk", 'nav.quick': 'Quick menu',
 
     'hero.available': 'Available', 'hero.currently': 'Currently at', 'hero.hi': "Hi, I'm Rishav",
     'hero.build': 'I build', 'hero.that': 'that', 'hero.perform': 'perform.',
@@ -56,7 +56,7 @@ const dict = {
 
   hi: {
     'nav.about': 'परिचय', 'nav.work': 'काम', 'nav.services': 'सेवाएँ', 'nav.journey': 'सफ़र', 'nav.contact': 'संपर्क',
-    'nav.resume': 'रिज़्यूमे', 'nav.lab': 'लैब', 'nav.games': 'गेम्स', 'nav.talk': 'बात करें', 'nav.quick': 'क्विक मेन्यू',
+    'nav.resume': 'रिज़्यूमे', 'nav.lab': 'लैब', 'nav.games': 'गेम्स', 'nav.builder': 'बिल्डर', 'nav.talk': 'बात करें', 'nav.quick': 'क्विक मेन्यू',
 
     'hero.available': 'उपलब्ध', 'hero.currently': 'अभी कार्यरत', 'hero.hi': 'नमस्ते, मैं ऋषव हूँ',
     'hero.build': 'मैं बनाता हूँ', 'hero.that': 'जो', 'hero.perform': 'कमाल करें।',

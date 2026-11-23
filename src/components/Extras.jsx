@@ -13,7 +13,7 @@ export const lockScroll = (on) => {
   if (window.__lenis) on ? window.__lenis.stop() : window.__lenis.start();
 };
 
-export const onGamesPage = () => /^#\/(games|work|resume|lab)/.test(window.location.hash); // any sub-page
+export const onGamesPage = () => /^#\/(games|work|resume|lab|builder)/.test(window.location.hash); // any sub-page
 
 export const scrollToId = (id) => {
   if (id.startsWith('#/')) {
@@ -300,6 +300,7 @@ export function CommandPalette() {
       { group: 'Navigate', label: 'Tech universe (3D)', icon: 'brain', run: () => scrollToId('#universe') },
       { group: 'Navigate', label: 'Journey', icon: 'server', run: () => scrollToId('#experience') },
       { group: 'Navigate', label: 'Credentials', icon: 'shield', run: () => scrollToId('#credentials') },
+      { group: 'Pages', label: 'Site Builder — prompt to website ✨', icon: 'spark', run: () => scrollToId('#/builder') },
       { group: 'Pages', label: 'Online résumé', icon: 'layers', run: () => scrollToId('#/resume') },
       { group: 'Pages', label: 'AI Lab — interactive demos 🧪', icon: 'brain', run: () => scrollToId('#/lab') },
       { group: 'Pages', label: 'Games page — 25 games 🎮', icon: 'spark', run: () => scrollToId('#/games') },
